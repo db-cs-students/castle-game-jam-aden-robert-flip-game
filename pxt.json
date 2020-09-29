@@ -3,7 +3,9 @@
     "description": "",
     "dependencies": {
         "device": "*",
-        "color-coded-tilemap": "*"
+        "color-coded-tilemap": "*",
+        "animation": "*",
+        "Timers": "github:microsoft/arcade-timers#v1.0.1"
     },
     "files": [
         "main.ts",
