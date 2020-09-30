@@ -368,20 +368,24 @@ def on_forever():
         info.change_life_by(-1)
         player1.set_position(80, 104)
         player1.say("ouch", 1000, 15, 0)
+        scene.camera_shake(4)
         gary.set_position(0, 0)
         gary.destroy()
 def on_hit_tile(sprite):
     player1.set_position(80, 104)
     info.change_life_by(-1)
+    scene.camera_shake(4)
     player1.say("ouch", 1000, 15, 0)
 scene.on_hit_tile(SpriteKind.player, 3, on_hit_tile)
 def on_hit_tile2(sprite):
     player1.set_position(80, 104)
     info.change_life_by(-1)
+    scene.camera_shake(4)
     player1.say("ouch", 1000, 15, 0)
 scene.on_hit_tile(SpriteKind.player, 4, on_hit_tile)
 def on_hit_tile3(sprite):
     game.over(True)
+    level = 1
 scene.on_hit_tile(SpriteKind.player, 5, on_hit_tile3)
 forever(on_forever)
 #Enemies

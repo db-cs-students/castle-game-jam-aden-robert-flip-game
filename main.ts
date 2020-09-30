@@ -308,6 +308,7 @@ scene.setTile(6, img`
 function on_hit_tile(sprite: Sprite) {
     player1.setPosition(80, 104)
     info.changeLifeBy(-1)
+    scene.cameraShake(4)
     player1.say("ouch", 1000, 15, 0)
 }
 
@@ -315,12 +316,14 @@ scene.onHitTile(SpriteKind.Player, 3, on_hit_tile)
 function on_hit_tile2(sprite: any) {
     player1.setPosition(80, 104)
     info.changeLifeBy(-1)
+    scene.cameraShake(4)
     player1.say("ouch", 1000, 15, 0)
 }
 
 scene.onHitTile(SpriteKind.Player, 4, on_hit_tile)
 scene.onHitTile(SpriteKind.Player, 5, function on_hit_tile3(sprite: Sprite) {
     game.over(true)
+    let level = 1
 })
 forever(function on_forever() {
     // Gravity
@@ -398,6 +401,7 @@ forever(function on_forever() {
         info.changeLifeBy(-1)
         player1.setPosition(80, 104)
         player1.say("ouch", 1000, 15, 0)
+        scene.cameraShake(4)
         gary.setPosition(0, 0)
         gary.destroy()
     }
