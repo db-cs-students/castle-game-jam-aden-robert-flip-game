@@ -22,7 +22,7 @@ if (level == 0) {
         ..................................5.....
         ..................................5.....
         ..................................5.....
-        ...............6.6.6..............5.....
+        .................6................5.....
         .........111111111111444..........5.....
         1111111112222222222221111111111111112111
     `)
@@ -319,11 +319,9 @@ function on_hit_tile2(sprite: any) {
 }
 
 scene.onHitTile(SpriteKind.Player, 4, on_hit_tile)
-function on_hit_tile3(sprite: any) {
-    
-}
-
-scene.onHitTile(SpriteKind.Player, 5, on_hit_tile)
+scene.onHitTile(SpriteKind.Player, 5, function on_hit_tile3(sprite: Sprite) {
+    game.over(true)
+})
 forever(function on_forever() {
     // Gravity
     

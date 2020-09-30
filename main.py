@@ -21,7 +21,7 @@ if level == 0:
         ..................................5.....
         ..................................5.....
         ..................................5.....
-        ...............6.6.6..............5.....
+        .................6................5.....
         .........111111111111444..........5.....
         1111111112222222222221111111111111112111
     """))
@@ -381,8 +381,8 @@ def on_hit_tile2(sprite):
     player1.say("ouch", 1000, 15, 0)
 scene.on_hit_tile(SpriteKind.player, 4, on_hit_tile)
 def on_hit_tile3(sprite):
-    pass
-scene.on_hit_tile(SpriteKind.player, 5, on_hit_tile)
+    game.over(True)
+scene.on_hit_tile(SpriteKind.player, 5, on_hit_tile3)
 forever(on_forever)
 #Enemies
 
