@@ -168,8 +168,8 @@ let player1 = sprites.create(img`
 `, SpriteKind.Player)
 scene.setTileMap(img`
     ........................................
-    2222...222222222222222222222222222.....2
-    .......22222222222223333.........2.....2
+    2222222222222222222222222222222222222222
+    .......22222222222223333................
     ........................................
     ........................................
     ............................5...........
@@ -180,7 +180,7 @@ scene.setTileMap(img`
     ............................5...........
     ............................5...........
     ............................5...........
-    ...................6........5...........
+    ...............6.6.6........5...........
     .........111111111111444....5...........
     1111111112222222222221111111111111112111
 `)
@@ -355,7 +355,8 @@ forever(function on_forever() {
         player1.vx = 0
     }
     
-    gary.vy = gravity
+    // enemies
+    gary.vy = gravity / 2
     if (gary.isHittingTile(CollisionDirection.Top) || gary.isHittingTile(CollisionDirection.Bottom)) {
         gary.follow(player1, 50)
     } else {
@@ -370,10 +371,28 @@ forever(function on_forever() {
         gary.destroy()
     }
     
-    function on_overlap_tile(sprite: any, location: any) {
-        
-    }
-    
+    scene.onOverlapTile(SpriteKind.Player, img`
+        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+    `, function on_overlap_tile(sprite: Sprite, location: tiles.Location) {
+        info.changeLifeBy(-1)
+        player1.setPosition(80, 104)
+        player1.say("ouch", 1000, 15, 0)
+    })
 })
 // Enemies
 scene.placeOnRandomTile(gary, 6)
