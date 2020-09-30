@@ -3,7 +3,35 @@ Title:Flip
 Creators:Robert,Aden
 Description:u flip gravity
 """
+#Game Setup
 info.set_life(3)
+level = 0
+if level == 0:
+    scene.set_tile_map(img("""
+        ........................................
+        2222222222222222222222222222222222222222
+        .......22222222222223333..........5.....
+        ..................................5.....
+        ..................................5.....
+        ..................................5.....
+        ..................................5.....
+        ..................................5.....
+        ..1111111.........................5.....
+        ..................................5.....
+        ..................................5.....
+        ..................................5.....
+        ..................................5.....
+        ...............6.6.6..............5.....
+        .........111111111111444..........5.....
+        1111111112222222222221111111111111112111
+    """))
+elif level == 1:
+    pass
+elif level == 2:
+    pass
+else:
+    pass
+#Sprite Setup
 gary = sprites.create(img("""
     2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
     2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
@@ -164,28 +192,8 @@ player1 = sprites.create(img("""
     . . . . . . f b 1 1 1 1 f . . .
     . . . . . . f b 1 f f 1 f . . .
     . . . . . . f b b f b 1 f . . .
-"""),
+"""),SpriteKind.player)
 
-    SpriteKind.player)
-    
-scene.set_tile_map(img("""
-    ........................................
-    2222222222222222222222222222222222222222
-    .......22222222222223333................
-    ........................................
-    ........................................
-    ............................5...........
-    ............................5...........
-    ............................5...........
-    ..1111111...................5...........
-    ............................5...........
-    ............................5...........
-    ............................5...........
-    ............................5...........
-    ...............6.6.6........5...........
-    .........111111111111444....5...........
-    1111111112222222222221111111111111112111
-"""))
 scene.set_tile(1, img("""
     7 7 7 7 7 7 7 7 7 7 5 7 7 7 7 7
     7 7 7 7 7 7 7 7 7 5 7 5 7 7 7 7
@@ -239,7 +247,7 @@ scene.set_tile(3, img("""
     . . . . 1 b . . . . . . . . . .
     . . . . 1 b . . . . . . . . . .
     . . . . . . . . . . . . . . . .
-"""))
+"""),True)
 scene.set_tile(4, img("""
     . . . . 1 . . . . . . . . . . .
     . . . 1 1 . . . . . . . 1 . . .
@@ -257,7 +265,7 @@ scene.set_tile(4, img("""
     1 d d d d b c c d d d d d b b c
     1 d d d d b c c d d d d d b b c
     1 d d d d b c c d d d d d b b c
-"""))
+"""),True)
 scene.set_tile(5, img("""
     . 5 5 5 . . . . . . . . . . . .
     . 5 5 5 . . . . . . . . . . . .
@@ -275,7 +283,7 @@ scene.set_tile(5, img("""
     . 5 5 5 . . . . . . . . . . . .
     . 5 5 5 . . . . . . . . . . . .
     . 5 5 5 . . . . . . . . . . . .
-"""))
+"""),True)
 scene.set_tile(6, img("""
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
@@ -294,7 +302,9 @@ scene.set_tile(6, img("""
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
 """))
+#Forever Commands
 def on_forever():
+    #Gravity
     global gravity, bpress
     player1.vy = gravity
     scene.camera_follow_sprite(player1)
@@ -349,7 +359,7 @@ def on_forever():
         player1.vx = -100
     else:
         player1.vx = 0
-    #enemies
+    #Enemies
     gary.vy = gravity/2
     if gary.is_hitting_tile(CollisionDirection.TOP) or gary.is_hitting_tile(CollisionDirection.BOTTOM):
         gary.follow(player1, 50)
@@ -360,31 +370,19 @@ def on_forever():
         player1.say("ouch", 1000, 15, 0)
         gary.set_position(0, 0)
         gary.destroy()
-    
-    def on_overlap_tile(sprite, location):
-        info.change_life_by(-1)
-        player1.set_position(80, 104)
-        player1.say("ouch", 1000, 15, 0)
-    scene.on_overlap_tile(SpriteKind.player, img("""
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-    """), on_overlap_tile)
-
-
+def on_hit_tile(sprite):
+    player1.set_position(80, 104)
+    info.change_life_by(-1)
+    player1.say("ouch", 1000, 15, 0)
+scene.on_hit_tile(SpriteKind.player, 3, on_hit_tile)
+def on_hit_tile2(sprite):
+    player1.set_position(80, 104)
+    info.change_life_by(-1)
+    player1.say("ouch", 1000, 15, 0)
+scene.on_hit_tile(SpriteKind.player, 4, on_hit_tile)
+def on_hit_tile3(sprite):
+    pass
+scene.on_hit_tile(SpriteKind.player, 5, on_hit_tile)
 forever(on_forever)
 #Enemies
 

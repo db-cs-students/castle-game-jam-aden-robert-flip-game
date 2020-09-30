@@ -4,7 +4,37 @@ Creators:Robert,Aden
 Description:u flip gravity
 
  */
+// Game Setup
 info.setLife(3)
+let level = 0
+if (level == 0) {
+    scene.setTileMap(img`
+        ........................................
+        2222222222222222222222222222222222222222
+        .......22222222222223333..........5.....
+        ..................................5.....
+        ..................................5.....
+        ..................................5.....
+        ..................................5.....
+        ..................................5.....
+        ..1111111.........................5.....
+        ..................................5.....
+        ..................................5.....
+        ..................................5.....
+        ..................................5.....
+        ...............6.6.6..............5.....
+        .........111111111111444..........5.....
+        1111111112222222222221111111111111112111
+    `)
+} else if (level == 1) {
+    
+} else if (level == 2) {
+    
+} else {
+    
+}
+
+// Sprite Setup
 let gary = sprites.create(img`
     2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
     2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
@@ -166,24 +196,6 @@ let player1 = sprites.create(img`
     . . . . . . f b 1 f f 1 f . . .
     . . . . . . f b b f b 1 f . . .
 `, SpriteKind.Player)
-scene.setTileMap(img`
-    ........................................
-    2222222222222222222222222222222222222222
-    .......22222222222223333................
-    ........................................
-    ........................................
-    ............................5...........
-    ............................5...........
-    ............................5...........
-    ..1111111...................5...........
-    ............................5...........
-    ............................5...........
-    ............................5...........
-    ............................5...........
-    ...............6.6.6........5...........
-    .........111111111111444....5...........
-    1111111112222222222221111111111111112111
-`)
 scene.setTile(1, img`
     7 7 7 7 7 7 7 7 7 7 5 7 7 7 7 7
     7 7 7 7 7 7 7 7 7 5 7 5 7 7 7 7
@@ -237,7 +249,7 @@ scene.setTile(3, img`
     . . . . 1 b . . . . . . . . . .
     . . . . 1 b . . . . . . . . . .
     . . . . . . . . . . . . . . . .
-`)
+`, true)
 scene.setTile(4, img`
     . . . . 1 . . . . . . . . . . .
     . . . 1 1 . . . . . . . 1 . . .
@@ -255,7 +267,7 @@ scene.setTile(4, img`
     1 d d d d b c c d d d d d b b c
     1 d d d d b c c d d d d d b b c
     1 d d d d b c c d d d d d b b c
-`)
+`, true)
 scene.setTile(5, img`
     . 5 5 5 . . . . . . . . . . . .
     . 5 5 5 . . . . . . . . . . . .
@@ -273,7 +285,7 @@ scene.setTile(5, img`
     . 5 5 5 . . . . . . . . . . . .
     . 5 5 5 . . . . . . . . . . . .
     . 5 5 5 . . . . . . . . . . . .
-`)
+`, true)
 scene.setTile(6, img`
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
@@ -292,7 +304,28 @@ scene.setTile(6, img`
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
 `)
+// Forever Commands
+function on_hit_tile(sprite: Sprite) {
+    player1.setPosition(80, 104)
+    info.changeLifeBy(-1)
+    player1.say("ouch", 1000, 15, 0)
+}
+
+scene.onHitTile(SpriteKind.Player, 3, on_hit_tile)
+function on_hit_tile2(sprite: any) {
+    player1.setPosition(80, 104)
+    info.changeLifeBy(-1)
+    player1.say("ouch", 1000, 15, 0)
+}
+
+scene.onHitTile(SpriteKind.Player, 4, on_hit_tile)
+function on_hit_tile3(sprite: any) {
+    
+}
+
+scene.onHitTile(SpriteKind.Player, 5, on_hit_tile)
 forever(function on_forever() {
+    // Gravity
     
     player1.vy = gravity
     scene.cameraFollowSprite(player1)
@@ -355,7 +388,7 @@ forever(function on_forever() {
         player1.vx = 0
     }
     
-    // enemies
+    // Enemies
     gary.vy = gravity / 2
     if (gary.isHittingTile(CollisionDirection.Top) || gary.isHittingTile(CollisionDirection.Bottom)) {
         gary.follow(player1, 50)
@@ -371,28 +404,6 @@ forever(function on_forever() {
         gary.destroy()
     }
     
-    scene.onOverlapTile(SpriteKind.Player, img`
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-    `, function on_overlap_tile(sprite: Sprite, location: tiles.Location) {
-        info.changeLifeBy(-1)
-        player1.setPosition(80, 104)
-        player1.say("ouch", 1000, 15, 0)
-    })
 })
 // Enemies
 scene.placeOnRandomTile(gary, 6)
