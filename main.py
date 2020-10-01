@@ -412,7 +412,6 @@ forever(on_forever)
 scene.place_on_random_tile(gary, 6)
 #Left, right, up, and down
 def on_update():
-    player1.say(str(controller.dx()))
     if controller.dx() > 0 and gravity < 0:
         player1.set_image(img("""
             . . . . . . f b 1 f 1 1 f . . .
@@ -434,7 +433,7 @@ def on_update():
         """))
     elif controller.dx() < 0 and gravity < 0:
         player1.set_image(img("""
-            . . . . . . f 1 1 f 1 b f . . .
+            . . . . . . f 1 b f 1 b f . . .
             . . . . . . f 1 f f 1 b f . . .
             . . . . . . f 1 1 1 1 b f . . .
             . . . . . . f 1 1 1 1 b f . . .
@@ -487,6 +486,6 @@ def on_update():
             . . . . . . f 1 1 1 1 b f . . .
             . . . . . . f 1 1 1 1 b f . . .
             . . . . . . f 1 f f 1 b f . . .
-            . . . . . . f 1 1 f b b f . . .
+            . . . . . . f 1 b f b b f . . .
         """))
 game.on_update(on_update)

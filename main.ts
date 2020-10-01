@@ -429,7 +429,6 @@ forever(function on_forever() {
 scene.placeOnRandomTile(gary, 6)
 // Left, right, up, and down
 game.onUpdate(function on_update() {
-    player1.say("" + controller.dx())
     if (controller.dx() > 0 && gravity < 0) {
         player1.setImage(img`
             . . . . . . f b 1 f 1 1 f . . .
@@ -451,7 +450,7 @@ game.onUpdate(function on_update() {
         `)
     } else if (controller.dx() < 0 && gravity < 0) {
         player1.setImage(img`
-            . . . . . . f 1 1 f 1 b f . . .
+            . . . . . . f 1 b f 1 b f . . .
             . . . . . . f 1 f f 1 b f . . .
             . . . . . . f 1 1 1 1 b f . . .
             . . . . . . f 1 1 1 1 b f . . .
@@ -504,7 +503,7 @@ game.onUpdate(function on_update() {
             . . . . . . f 1 1 1 1 b f . . .
             . . . . . . f 1 1 1 1 b f . . .
             . . . . . . f 1 f f 1 b f . . .
-            . . . . . . f 1 1 f b b f . . .
+            . . . . . . f 1 b f b b f . . .
         `)
     }
     
