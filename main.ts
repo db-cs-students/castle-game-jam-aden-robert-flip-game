@@ -427,7 +427,7 @@ forever(function on_forever() {
 })
 // Enemies
 scene.placeOnRandomTile(gary, 6)
-// i dont know how to kill them yet
+// Left, right, up, and down
 game.onUpdate(function on_update() {
     player1.say("" + controller.dx())
     if (controller.dx() > 0 && gravity < 0) {

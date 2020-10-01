@@ -410,7 +410,7 @@ forever(on_forever)
 #Enemies
 
 scene.place_on_random_tile(gary, 6)
-#i dont know how to kill them yet
+#Left, right, up, and down
 def on_update():
     player1.say(str(controller.dx()))
     if controller.dx() > 0 and gravity < 0:
