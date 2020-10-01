@@ -172,7 +172,7 @@ player1 = sprites.create(img("""
 #Tilemaps and Levels
 if level == 0:
     scene.set_tile_map(img("""
-        22222222222222222222233333333333333333222222222222
+        222222222222222222222.................222222222222
         ....................2.................222222....5.
         ......................................2.........5.
         ................................................5.
@@ -181,9 +181,9 @@ if level == 0:
         ..............................................2222
         ..................................................
         ..................................................
-        ....................111111111111111111............
-        ....................222222222222222222............
-        11................................................
+        ..................................................
+        ....................222222223332222222............
+        11.........................2...2..................
         221111............................................
         222222111..................................1......
         22222222211111111111111............111111112......
@@ -324,12 +324,12 @@ scene.set_tile(6, img("""
 def on_forever():
     #Gravity
     global gravity, bpress
-    player1.vy = gravity
+    player1.ay = gravity
     scene.camera_follow_sprite(player1)
     if bpress == 0:
-        gravity = 210
+        gravity = 250
     else:
-        gravity = -210
+        gravity = -250
     if controller.B.is_pressed() and player1.is_hitting_tile(CollisionDirection.BOTTOM):
         bpress = 1
         player1.set_image(img("""
@@ -378,7 +378,7 @@ def on_forever():
     else:
         player1.vx = 0
     #Enemies
-    gary.vy = gravity/2
+    gary.ay = gravity/2
     if gary.is_hitting_tile(CollisionDirection.TOP) or gary.is_hitting_tile(CollisionDirection.BOTTOM):
         gary.follow(player1, 50)
     else :gary.follow(player1, 0)
@@ -494,6 +494,9 @@ def on_update():
             . . . . . . f 1 f f 1 b f . . .
             . . . . . . f 1 b f b b f . . .
         """))
-        
+    if controller.A.is_pressed() and player1.is_hitting_tile(CollisionDirection.BOTTOM):
+        player1.vy = -100
+    if controller.A.is_pressed() and player1.is_hitting_tile(CollisionDirection.TOP):
+        player1.vy = 100
 game.on_update(on_update)
 #Changing levels

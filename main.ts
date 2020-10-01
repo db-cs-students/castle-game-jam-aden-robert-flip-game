@@ -173,7 +173,7 @@ let player1 = sprites.create(img`
 // Tilemaps and Levels
 if (level == 0) {
     scene.setTileMap(img`
-        22222222222222222222233333333333333333222222222222
+        222222222222222222222.................222222222222
         ....................2.................222222....5.
         ......................................2.........5.
         ................................................5.
@@ -182,9 +182,9 @@ if (level == 0) {
         ..............................................2222
         ..................................................
         ..................................................
-        ....................111111111111111111............
-        ....................222222222222222222............
-        11................................................
+        ..................................................
+        ....................222222223332222222............
+        11.........................2...2..................
         221111............................................
         222222111..................................1......
         22222222211111111111111............111111112......
@@ -347,12 +347,12 @@ scene.onHitTile(SpriteKind.Player, 5, function on_hit_tile3(sprite: Sprite) {
 forever(function on_forever() {
     // Gravity
     
-    player1.vy = gravity
+    player1.ay = gravity
     scene.cameraFollowSprite(player1)
     if (bpress == 0) {
-        gravity = 210
+        gravity = 250
     } else {
-        gravity = -210
+        gravity = -250
     }
     
     if (controller.B.isPressed() && player1.isHittingTile(CollisionDirection.Bottom)) {
@@ -409,7 +409,7 @@ forever(function on_forever() {
     }
     
     // Enemies
-    gary.vy = gravity / 2
+    gary.ay = gravity / 2
     if (gary.isHittingTile(CollisionDirection.Top) || gary.isHittingTile(CollisionDirection.Bottom)) {
         gary.follow(player1, 50)
     } else {
@@ -514,6 +514,14 @@ game.onUpdate(function on_update() {
             . . . . . . f 1 f f 1 b f . . .
             . . . . . . f 1 b f b b f . . .
         `)
+    }
+    
+    if (controller.A.isPressed() && player1.isHittingTile(CollisionDirection.Bottom)) {
+        player1.vy = -100
+    }
+    
+    if (controller.A.isPressed() && player1.isHittingTile(CollisionDirection.Top)) {
+        player1.vy = 100
     }
     
 })
