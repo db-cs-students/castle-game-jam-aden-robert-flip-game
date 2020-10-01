@@ -389,6 +389,8 @@ def on_forever():
         scene.camera_shake(4)
         gary.set_position(0, 0)
         gary.destroy()
+
+#Death
 def on_hit_tile(sprite):
     player1.set_position(80, 104)
     info.change_life_by(-1)
@@ -409,3 +411,82 @@ forever(on_forever)
 
 scene.place_on_random_tile(gary, 6)
 #i dont know how to kill them yet
+def on_update():
+    player1.say(str(controller.dx()))
+    if controller.dx() > 0 and gravity < 0:
+        player1.set_image(img("""
+            . . . . . . f b 1 f 1 1 f . . .
+            . . . . . . f b 1 f f 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b b b b b f . . .
+            . . . . . . f f f f f f f . . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b 1 1 f 1 f 1 f . .
+            . . . . . f b 1 1 f 1 f 1 f . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b b b b b b b f . .
+            . . . . . . f f f f f f f . . .
+        """))
+    elif controller.dx() < 0 and gravity < 0:
+        player1.set_image(img("""
+            . . . . . . f 1 1 f 1 b f . . .
+            . . . . . . f 1 f f 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f b b b b b f . . .
+            . . . . . . f f f f f f f . . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f 1 f 1 f 1 1 b f . .
+            . . . . . f 1 f 1 f 1 1 b f . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f b b b b b b b f . .
+            . . . . . . f f f f f f f . . .
+        """))
+    elif controller.dx() > 0:
+        player1.set_image(img("""
+            . . . . . . f f f f f f f . . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b 1 1 f 1 f 1 f . .
+            . . . . . f b 1 1 f 1 f 1 f . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b b b b b b b f . .
+            . . . . . . f f f f f f f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 f f 1 f . . .
+            . . . . . . f b b f b 1 f . . .
+        """))
+    elif controller.dx() < 0:
+        player1.set_image(img("""
+            . . . . . . f f f f f f f . . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f 1 f 1 f 1 1 b f . .
+            . . . . . f 1 f 1 f 1 1 b f . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f b b b b b b b f . .
+            . . . . . . f f f f f f f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 f f 1 b f . . .
+            . . . . . . f 1 1 f b b f . . .
+        """))
+game.on_update(on_update)

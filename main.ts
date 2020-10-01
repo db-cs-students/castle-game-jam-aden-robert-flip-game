@@ -323,6 +323,7 @@ scene.setTile(6, img`
     . . . . . . . . . . . . . . . .
 `)
 // Forever Commands
+// Death
 function on_hit_tile(sprite: Sprite) {
     player1.setPosition(80, 104)
     info.changeLifeBy(-1)
@@ -426,3 +427,85 @@ forever(function on_forever() {
 })
 // Enemies
 scene.placeOnRandomTile(gary, 6)
+// i dont know how to kill them yet
+game.onUpdate(function on_update() {
+    player1.say("" + controller.dx())
+    if (controller.dx() > 0 && gravity < 0) {
+        player1.setImage(img`
+            . . . . . . f b 1 f 1 1 f . . .
+            . . . . . . f b 1 f f 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b b b b b f . . .
+            . . . . . . f f f f f f f . . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b 1 1 f 1 f 1 f . .
+            . . . . . f b 1 1 f 1 f 1 f . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b b b b b b b f . .
+            . . . . . . f f f f f f f . . .
+        `)
+    } else if (controller.dx() < 0 && gravity < 0) {
+        player1.setImage(img`
+            . . . . . . f 1 1 f 1 b f . . .
+            . . . . . . f 1 f f 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f b b b b b f . . .
+            . . . . . . f f f f f f f . . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f 1 f 1 f 1 1 b f . .
+            . . . . . f 1 f 1 f 1 1 b f . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f b b b b b b b f . .
+            . . . . . . f f f f f f f . . .
+        `)
+    } else if (controller.dx() > 0) {
+        player1.setImage(img`
+            . . . . . . f f f f f f f . . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b 1 1 f 1 f 1 f . .
+            . . . . . f b 1 1 f 1 f 1 f . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b b b b b b b f . .
+            . . . . . . f f f f f f f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 f f 1 f . . .
+            . . . . . . f b b f b 1 f . . .
+        `)
+    } else if (controller.dx() < 0) {
+        player1.setImage(img`
+            . . . . . . f f f f f f f . . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f 1 f 1 f 1 1 b f . .
+            . . . . . f 1 f 1 f 1 1 b f . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f b b b b b b b f . .
+            . . . . . . f f f f f f f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 f f 1 b f . . .
+            . . . . . . f 1 1 f b b f . . .
+        `)
+    }
+    
+})
