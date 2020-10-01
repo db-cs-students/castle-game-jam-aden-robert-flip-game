@@ -7,48 +7,6 @@ Description:u flip gravity
 game.splash("Level 1-1", "Press 'B' to flip gravity!")
 info.set_life(3)
 level = 0
-if level == 0:
-    scene.set_tile_map(img("""
-        22222222222222222222233333333333333333222222222222
-        ....................2.................222222....5.
-        ......................................2.........5.
-        ................................................5.
-        ................................................5.
-        ..............................................1111
-        ..............................................2222
-        ..................................................
-        ..................................................
-        ....................111111111111111111............
-        ....................222222222222222222............
-        11................................................
-        221111............................................
-        222222111..................................1......
-        22222222211111111111111............111111112......
-        62222222222222222222222444444444444222222222444444
-    """))
-elif level == 1:
-    scene.set_tile_map(img("""
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . 1 1 1 1 . . . . . . .
-        1 1 1 1 1 1 2 2 2 1 1 1 1 1 1 1
-        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-    """))
-elif level == 2:
-    pass
-else:
-    pass
 #Sprite Setup
 gary = sprites.create(img("""
     2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
@@ -322,6 +280,49 @@ scene.set_tile(6, img("""
 """))
 #Forever Commands
 def on_forever():
+    #Tilemaps and Levels
+    if level == 0:
+        scene.set_tile_map(img("""
+        22222222222222222222233333333333333333222222222222
+        ....................2.................222222....5.
+        ......................................2.........5.
+        ................................................5.
+        ................................................5.
+        ..............................................1111
+        ..............................................2222
+        ..................................................
+        ..................................................
+        ....................111111111111111111............
+        ....................222222222222222222............
+        11................................................
+        221111............................................
+        222222111..................................1......
+        22222222211111111111111............111111112......
+        62222222222222222222222444444444444222222222444444
+    """))
+    elif level == 1:
+        scene.set_tile_map(img("""
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . 1 1 1 1 . . . . . . .
+        1 1 1 1 1 1 2 2 2 1 1 1 1 1 1 1
+        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+    """))
+    elif level == 2:
+        pass
+    else:
+        pass
     #Gravity
     global gravity, bpress
     player1.vy = gravity
@@ -389,23 +390,29 @@ def on_forever():
         scene.camera_shake(4)
         gary.set_position(0, 0)
         gary.destroy()
-
-#Death
-def on_hit_tile(sprite):
-    player1.set_position(80, 104)
-    info.change_life_by(-1)
-    scene.camera_shake(4)
-    player1.say("ouch", 1000, 15, 0)
-scene.on_hit_tile(SpriteKind.player, 3, on_hit_tile)
-def on_hit_tile2(sprite):
-    player1.set_position(80, 104)
-    info.change_life_by(-1)
-    scene.camera_shake(4)
-    player1.say("ouch", 1000, 15, 0)
-scene.on_hit_tile(SpriteKind.player, 4, on_hit_tile)
-def on_hit_tile3(sprite):
-    level + 1
-scene.on_hit_tile(SpriteKind.player, 5, on_hit_tile3)
+#Jump
+    """
+    if controller.A.is_pressed() and gravity > 0 and player1.is_hitting_tile(CollisionDirection.BOTTOM):
+        player1.vy = -100
+    elif controller.A.is_pressed() and gravity < 0 and player1.is_hitting_tile(CollisionDirection.TOP):
+        player1.vy = 100
+    """
+    #Death
+    def on_hit_tile(sprite):
+        player1.set_position(80, 104)
+        info.change_life_by(-1)
+        scene.camera_shake(4)
+        player1.say("ouch", 1000, 15, 0)
+    scene.on_hit_tile(SpriteKind.player, 3, on_hit_tile)
+    def on_hit_tile2(sprite):
+        player1.set_position(80, 104)
+        info.change_life_by(-1)
+        scene.camera_shake(4)
+        player1.say("ouch", 1000, 15, 0)
+    scene.on_hit_tile(SpriteKind.player, 4, on_hit_tile)
+    def on_hit_tile3(sprite):
+        level + 1
+    scene.on_hit_tile(SpriteKind.player, 5, on_hit_tile3)
 forever(on_forever)
 #Enemies
 
@@ -489,3 +496,4 @@ def on_update():
             . . . . . . f 1 b f b b f . . .
         """))
 game.on_update(on_update)
+#Changing levels

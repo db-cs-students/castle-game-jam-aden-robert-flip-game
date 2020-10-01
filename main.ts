@@ -8,50 +8,6 @@ Description:u flip gravity
 game.splash("Level 1-1", "Press 'B' to flip gravity!")
 info.setLife(3)
 let level = 0
-if (level == 0) {
-    scene.setTileMap(img`
-        22222222222222222222233333333333333333222222222222
-        ....................2.................222222....5.
-        ......................................2.........5.
-        ................................................5.
-        ................................................5.
-        ..............................................1111
-        ..............................................2222
-        ..................................................
-        ..................................................
-        ....................111111111111111111............
-        ....................222222222222222222............
-        11................................................
-        221111............................................
-        222222111..................................1......
-        22222222211111111111111............111111112......
-        62222222222222222222222444444444444222222222444444
-    `)
-} else if (level == 1) {
-    scene.setTileMap(img`
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . 1 1 1 1 . . . . . . .
-        1 1 1 1 1 1 2 2 2 1 1 1 1 1 1 1
-        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-    `)
-} else if (level == 2) {
-    
-} else {
-    
-}
-
 // Sprite Setup
 let gary = sprites.create(img`
     2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
@@ -323,27 +279,52 @@ scene.setTile(6, img`
     . . . . . . . . . . . . . . . .
 `)
 // Forever Commands
-// Death
-function on_hit_tile(sprite: Sprite) {
-    player1.setPosition(80, 104)
-    info.changeLifeBy(-1)
-    scene.cameraShake(4)
-    player1.say("ouch", 1000, 15, 0)
-}
-
-scene.onHitTile(SpriteKind.Player, 3, on_hit_tile)
-function on_hit_tile2(sprite: any) {
-    player1.setPosition(80, 104)
-    info.changeLifeBy(-1)
-    scene.cameraShake(4)
-    player1.say("ouch", 1000, 15, 0)
-}
-
-scene.onHitTile(SpriteKind.Player, 4, on_hit_tile)
-scene.onHitTile(SpriteKind.Player, 5, function on_hit_tile3(sprite: Sprite) {
-    level + 1
-})
 forever(function on_forever() {
+    // Tilemaps and Levels
+    if (level == 0) {
+        scene.setTileMap(img`
+        22222222222222222222233333333333333333222222222222
+        ....................2.................222222....5.
+        ......................................2.........5.
+        ................................................5.
+        ................................................5.
+        ..............................................1111
+        ..............................................2222
+        ..................................................
+        ..................................................
+        ....................111111111111111111............
+        ....................222222222222222222............
+        11................................................
+        221111............................................
+        222222111..................................1......
+        22222222211111111111111............111111112......
+        62222222222222222222222444444444444222222222444444
+    `)
+    } else if (level == 1) {
+        scene.setTileMap(img`
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . 1 1 1 1 . . . . . . .
+        1 1 1 1 1 1 2 2 2 1 1 1 1 1 1 1
+        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+    `)
+    } else if (level == 2) {
+        
+    } else {
+        
+    }
+    
     // Gravity
     
     player1.vy = gravity
@@ -424,6 +405,34 @@ forever(function on_forever() {
         gary.destroy()
     }
     
+    // Jump
+    /** 
+    if controller.A.is_pressed() and gravity > 0 and player1.is_hitting_tile(CollisionDirection.BOTTOM):
+        player1.vy = -100
+    elif controller.A.is_pressed() and gravity < 0 and player1.is_hitting_tile(CollisionDirection.TOP):
+        player1.vy = 100
+    
+ */
+    // Death
+    function on_hit_tile(sprite: Sprite) {
+        player1.setPosition(80, 104)
+        info.changeLifeBy(-1)
+        scene.cameraShake(4)
+        player1.say("ouch", 1000, 15, 0)
+    }
+    
+    scene.onHitTile(SpriteKind.Player, 3, on_hit_tile)
+    function on_hit_tile2(sprite: any) {
+        player1.setPosition(80, 104)
+        info.changeLifeBy(-1)
+        scene.cameraShake(4)
+        player1.say("ouch", 1000, 15, 0)
+    }
+    
+    scene.onHitTile(SpriteKind.Player, 4, on_hit_tile)
+    scene.onHitTile(SpriteKind.Player, 5, function on_hit_tile3(sprite: Sprite) {
+        level + 1
+    })
 })
 // Enemies
 scene.placeOnRandomTile(gary, 6)
