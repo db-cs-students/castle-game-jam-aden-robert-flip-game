@@ -468,9 +468,11 @@ function on_hit_tile2(sprite: any) {
     player1.say("ouch", 1000, 15, 0)
 }
 
+// Winning
 scene.onHitTile(SpriteKind.Player, 4, on_hit_tile)
 scene.onHitTile(SpriteKind.Player, 5, function on_hit_tile3(sprite: Sprite) {
     let level = 1
+    game.over(true)
 })
 forever(function on_forever() {
     // Gravity
@@ -565,6 +567,16 @@ forever(function on_forever() {
 // Enemies
 scene.placeOnRandomTile(gary, 6)
 // Left, right, up, and down
+/** 
+    if player1.is_hitting_tile(CollisionDirection.TOP) or player1.is_hitting_tile(CollisionDirection.BOTTOM):
+        airjump = 0
+    elif controller.B.is_pressed() and airjump == 1:
+        airjump = 2
+    elif not player1.is_hitting_tile(CollisionDirection.BOTTOM) and not player1.is_hitting_tile(CollisionDirection.TOP):
+        airjump = 1
+    player1.say(str(airjump))
+
+ */
 game.onUpdate(function on_update() {
     if (controller.dx() > 0 && gravity < 0) {
         player1.setImage(img`

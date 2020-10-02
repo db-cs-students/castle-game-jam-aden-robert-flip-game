@@ -538,10 +538,13 @@ def on_hit_tile2(sprite):
     info.change_life_by(-1)
     scene.camera_shake(4)
     player1.say("ouch", 1000, 15, 0)
+#Winning
 scene.on_hit_tile(SpriteKind.player, 4, on_hit_tile)
 def on_hit_tile3(sprite):
     level = 1
+    game.over(True)
 scene.on_hit_tile(SpriteKind.player, 5, on_hit_tile3)
+
 forever(on_forever)
 #Enemies
 
@@ -624,9 +627,18 @@ def on_update():
             . . . . . . f 1 f f 1 b f . . .
             . . . . . . f 1 b f b b f . . .
         """))
+    
     if controller.A.is_pressed() and player1.is_hitting_tile(CollisionDirection.BOTTOM):
         player1.vy = -100
     if controller.A.is_pressed() and player1.is_hitting_tile(CollisionDirection.TOP):
         player1.vy = 100
+"""
+    if player1.is_hitting_tile(CollisionDirection.TOP) or player1.is_hitting_tile(CollisionDirection.BOTTOM):
+        airjump = 0
+    elif controller.B.is_pressed() and airjump == 1:
+        airjump = 2
+    elif not player1.is_hitting_tile(CollisionDirection.BOTTOM) and not player1.is_hitting_tile(CollisionDirection.TOP):
+        airjump = 1
+    player1.say(str(airjump))
+"""
 game.on_update(on_update)
-#Changing levels
