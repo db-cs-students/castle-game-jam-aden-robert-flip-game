@@ -468,8 +468,8 @@ function on_hit_tile2(sprite: any) {
     player1.say("ouch", 1000, 15, 0)
 }
 
-// Winning
 scene.onHitTile(SpriteKind.Player, 4, on_hit_tile)
+// Winning
 scene.onHitTile(SpriteKind.Player, 5, function on_hit_tile3(sprite: Sprite) {
     let level = 1
     game.over(true)
