@@ -475,7 +475,7 @@ scene.onHitTile(SpriteKind.Player, 5, function on_hit_tile3(sprite: Sprite) {
     game.over(true)
 })
 forever(function on_forever() {
-    if (gary.vx < 0) {
+    if (gary.vx < 0 && gravity > 0) {
         gary.setImage(img`
             2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
             2 1 2 2 2 1 2 2 2 1 2 2 2 2 2 2
@@ -494,7 +494,7 @@ forever(function on_forever() {
             2 2 2 f f f f f f f 2 2 2 2 2 2
             2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
         `)
-    } else if (gary.vx > 0) {
+    } else if (gary.vx > 0 && gravity > 0) {
         gary.setImage(img`
             2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
             2 2 2 2 2 2 1 2 2 2 1 2 2 2 1 2
@@ -513,10 +513,44 @@ forever(function on_forever() {
             2 2 2 2 2 2 f f f f f f f 2 2 2
             2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
         `)
-    }
-    
-    if (gravity < 0) {
-        gary.image.flipY()
+    } else if (gary.vx < 0 && gravity < 0) {
+        gary.setImage(img`
+            2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+            2 2 2 f f f f f f f 2 2 2 2 2 2
+            2 2 f 2 2 2 2 2 2 f f 2 2 2 2 2
+            2 f 2 2 2 2 2 2 2 2 f f 2 2 2 2
+            2 f 2 2 2 2 2 2 2 2 2 f 2 2 2 2
+            f 2 2 2 2 2 2 2 2 2 2 2 f 2 2 2
+            2 2 2 2 2 2 2 2 2 2 2 2 f 2 2 2
+            2 1 2 2 2 1 2 2 2 1 2 2 f f 2 2
+            2 1 2 2 2 1 2 2 2 1 2 2 2 f 2 2
+            2 1 2 2 2 1 2 2 2 1 2 2 2 2 2 2
+            2 f 2 2 2 f 2 2 2 f 2 2 2 2 2 2
+            2 f 2 2 2 f 2 2 2 f 2 2 2 2 2 2
+            2 1 2 2 2 1 2 2 2 1 2 2 2 2 2 2
+            2 1 2 2 2 1 2 2 2 1 2 2 2 2 2 2
+            2 1 2 2 2 1 2 2 2 1 2 2 2 2 2 2
+            2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+        `)
+    } else if (gary.vx > 0 && gravity < 0) {
+        gary.setImage(img`
+            2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+            2 2 2 2 2 2 f f f f f f f 2 2 2
+            2 2 2 2 2 f f 2 2 2 2 2 2 f 2 2
+            2 2 2 2 f f 2 2 2 2 2 2 2 2 f 2
+            2 2 2 2 f 2 2 2 2 2 2 2 2 2 f 2
+            2 2 2 f 2 2 2 2 2 2 2 2 2 2 2 f
+            2 2 2 f 2 2 2 2 2 2 2 2 2 2 2 2
+            2 2 f f 2 2 1 2 2 2 1 2 2 2 1 2
+            2 2 f 2 2 2 1 2 2 2 1 2 2 2 1 2
+            2 2 2 2 2 2 1 2 2 2 1 2 2 2 1 2
+            2 2 2 2 2 2 f 2 2 2 f 2 2 2 f 2
+            2 2 2 2 2 2 f 2 2 2 f 2 2 2 f 2
+            2 2 2 2 2 2 1 2 2 2 1 2 2 2 1 2
+            2 2 2 2 2 2 1 2 2 2 1 2 2 2 1 2
+            2 2 2 2 2 2 1 2 2 2 1 2 2 2 1 2
+            2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+        `)
     }
     
     // Gravity

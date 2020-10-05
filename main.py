@@ -453,7 +453,7 @@ scene.set_tile(6, img("""
 """))
 #Forever Commands
 def on_forever():
-    if gary.vx < 0:
+    if gary.vx < 0 and gravity > 0:
         gary.set_image(img("""
             2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
             2 1 2 2 2 1 2 2 2 1 2 2 2 2 2 2
@@ -472,7 +472,7 @@ def on_forever():
             2 2 2 f f f f f f f 2 2 2 2 2 2
             2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
         """))
-    elif gary.vx > 0:
+    elif gary.vx > 0 and gravity > 0:
         gary.set_image(img("""
             2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
             2 2 2 2 2 2 1 2 2 2 1 2 2 2 1 2
@@ -491,8 +491,44 @@ def on_forever():
             2 2 2 2 2 2 f f f f f f f 2 2 2
             2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
         """))
-    if gravity < 0:
-        gary.image.flip_y()
+    elif gary.vx < 0 and gravity < 0:
+        gary.set_image(img("""
+            2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+            2 2 2 f f f f f f f 2 2 2 2 2 2
+            2 2 f 2 2 2 2 2 2 f f 2 2 2 2 2
+            2 f 2 2 2 2 2 2 2 2 f f 2 2 2 2
+            2 f 2 2 2 2 2 2 2 2 2 f 2 2 2 2
+            f 2 2 2 2 2 2 2 2 2 2 2 f 2 2 2
+            2 2 2 2 2 2 2 2 2 2 2 2 f 2 2 2
+            2 1 2 2 2 1 2 2 2 1 2 2 f f 2 2
+            2 1 2 2 2 1 2 2 2 1 2 2 2 f 2 2
+            2 1 2 2 2 1 2 2 2 1 2 2 2 2 2 2
+            2 f 2 2 2 f 2 2 2 f 2 2 2 2 2 2
+            2 f 2 2 2 f 2 2 2 f 2 2 2 2 2 2
+            2 1 2 2 2 1 2 2 2 1 2 2 2 2 2 2
+            2 1 2 2 2 1 2 2 2 1 2 2 2 2 2 2
+            2 1 2 2 2 1 2 2 2 1 2 2 2 2 2 2
+            2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+        """))
+    elif gary.vx > 0 and gravity < 0:
+        gary.set_image(img("""
+            2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+            2 2 2 2 2 2 f f f f f f f 2 2 2
+            2 2 2 2 2 f f 2 2 2 2 2 2 f 2 2
+            2 2 2 2 f f 2 2 2 2 2 2 2 2 f 2
+            2 2 2 2 f 2 2 2 2 2 2 2 2 2 f 2
+            2 2 2 f 2 2 2 2 2 2 2 2 2 2 2 f
+            2 2 2 f 2 2 2 2 2 2 2 2 2 2 2 2
+            2 2 f f 2 2 1 2 2 2 1 2 2 2 1 2
+            2 2 f 2 2 2 1 2 2 2 1 2 2 2 1 2
+            2 2 2 2 2 2 1 2 2 2 1 2 2 2 1 2
+            2 2 2 2 2 2 f 2 2 2 f 2 2 2 f 2
+            2 2 2 2 2 2 f 2 2 2 f 2 2 2 f 2
+            2 2 2 2 2 2 1 2 2 2 1 2 2 2 1 2
+            2 2 2 2 2 2 1 2 2 2 1 2 2 2 1 2
+            2 2 2 2 2 2 1 2 2 2 1 2 2 2 1 2
+            2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+        """))
     #Gravity
     global gravity, bpress
     player1.ay = gravity
