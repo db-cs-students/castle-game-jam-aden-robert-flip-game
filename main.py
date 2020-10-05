@@ -451,6 +451,101 @@ scene.set_tile(6, img("""
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
 """))
+#Enemies
+scene.place_on_random_tile(gary, 6)
+#Left, right, up, and down
+def on_update():
+    if controller.dx() > 0 and gravity < 0:
+        player1.set_image(img("""
+            . . . . . . f b 1 f 1 1 f . . .
+            . . . . . . f b 1 f f 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b b b b b f . . .
+            . . . . . . f f f f f f f . . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b 1 1 f 1 f 1 f . .
+            . . . . . f b 1 1 f 1 f 1 f . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b b b b b b b f . .
+            . . . . . . f f f f f f f . . .
+        """))
+    elif controller.dx() < 0 and gravity < 0:
+        player1.set_image(img("""
+            . . . . . . f 1 b f 1 b f . . .
+            . . . . . . f 1 f f 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f b b b b b f . . .
+            . . . . . . f f f f f f f . . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f 1 f 1 f 1 1 b f . .
+            . . . . . f 1 f 1 f 1 1 b f . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f b b b b b b b f . .
+            . . . . . . f f f f f f f . . .
+        """))
+    elif controller.dx() > 0:
+        player1.set_image(img("""
+            . . . . . . f f f f f f f . . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b 1 1 f 1 f 1 f . .
+            . . . . . f b 1 1 f 1 f 1 f . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b b b b b b b f . .
+            . . . . . . f f f f f f f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 f f 1 f . . .
+            . . . . . . f b b f b 1 f . . .
+        """))
+    elif controller.dx() < 0:
+        player1.set_image(img("""
+            . . . . . . f f f f f f f . . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f 1 f 1 f 1 1 b f . .
+            . . . . . f 1 f 1 f 1 1 b f . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f b b b b b b b f . .
+            . . . . . . f f f f f f f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 f f 1 b f . . .
+            . . . . . . f 1 b f b b f . . .
+        """))
+    #Jump
+    if controller.A.is_pressed() and player1.is_hitting_tile(CollisionDirection.BOTTOM):
+        player1.vy = -100
+    if controller.A.is_pressed() and player1.is_hitting_tile(CollisionDirection.TOP):
+        player1.vy = 100
+    """
+    if player1.is_hitting_tile(CollisionDirection.TOP) or player1.is_hitting_tile(CollisionDirection.BOTTOM):
+        airjump = 0
+    elif controller.B.is_pressed() and airjump == 1:
+        airjump = 2
+    elif not player1.is_hitting_tile(CollisionDirection.BOTTOM) and not player1.is_hitting_tile(CollisionDirection.TOP):
+        airjump = 1
+    player1.say(str(airjump))
+    """
+game.on_update(on_update)
 #Forever Commands
 def on_forever():
     if gary.vx < 0 and gravity > 0:
@@ -617,99 +712,3 @@ def on_hit_tile3(sprite):
 scene.on_hit_tile(SpriteKind.player, 5, on_hit_tile3)
 
 forever(on_forever)
-#Enemies
-
-scene.place_on_random_tile(gary, 6)
-#Left, right, up, and down
-def on_update():
-    if controller.dx() > 0 and gravity < 0:
-        player1.set_image(img("""
-            . . . . . . f b 1 f 1 1 f . . .
-            . . . . . . f b 1 f f 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b b b b b f . . .
-            . . . . . . f f f f f f f . . .
-            . . . . . f b 1 1 1 1 1 1 f . .
-            . . . . . f b 1 1 1 1 1 1 f . .
-            . . . . . f b 1 1 f 1 f 1 f . .
-            . . . . . f b 1 1 f 1 f 1 f . .
-            . . . . . f b 1 1 1 1 1 1 f . .
-            . . . . . f b b b b b b b f . .
-            . . . . . . f f f f f f f . . .
-        """))
-    elif controller.dx() < 0 and gravity < 0:
-        player1.set_image(img("""
-            . . . . . . f 1 b f 1 b f . . .
-            . . . . . . f 1 f f 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f b b b b b f . . .
-            . . . . . . f f f f f f f . . .
-            . . . . . f 1 1 1 1 1 1 b f . .
-            . . . . . f 1 1 1 1 1 1 b f . .
-            . . . . . f 1 f 1 f 1 1 b f . .
-            . . . . . f 1 f 1 f 1 1 b f . .
-            . . . . . f 1 1 1 1 1 1 b f . .
-            . . . . . f b b b b b b b f . .
-            . . . . . . f f f f f f f . . .
-        """))
-    elif controller.dx() > 0:
-        player1.set_image(img("""
-            . . . . . . f f f f f f f . . .
-            . . . . . f b 1 1 1 1 1 1 f . .
-            . . . . . f b 1 1 1 1 1 1 f . .
-            . . . . . f b 1 1 f 1 f 1 f . .
-            . . . . . f b 1 1 f 1 f 1 f . .
-            . . . . . f b 1 1 1 1 1 1 f . .
-            . . . . . f b b b b b b b f . .
-            . . . . . . f f f f f f f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 f f 1 f . . .
-            . . . . . . f b b f b 1 f . . .
-        """))
-    elif controller.dx() < 0:
-        player1.set_image(img("""
-            . . . . . . f f f f f f f . . .
-            . . . . . f 1 1 1 1 1 1 b f . .
-            . . . . . f 1 1 1 1 1 1 b f . .
-            . . . . . f 1 f 1 f 1 1 b f . .
-            . . . . . f 1 f 1 f 1 1 b f . .
-            . . . . . f 1 1 1 1 1 1 b f . .
-            . . . . . f b b b b b b b f . .
-            . . . . . . f f f f f f f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 f f 1 b f . . .
-            . . . . . . f 1 b f b b f . . .
-        """))
-    #Jump
-    if controller.A.is_pressed() and player1.is_hitting_tile(CollisionDirection.BOTTOM):
-        player1.vy = -100
-    if controller.A.is_pressed() and player1.is_hitting_tile(CollisionDirection.TOP):
-        player1.vy = 100
-    """
-    if player1.is_hitting_tile(CollisionDirection.TOP) or player1.is_hitting_tile(CollisionDirection.BOTTOM):
-        airjump = 0
-    elif controller.B.is_pressed() and airjump == 1:
-        airjump = 2
-    elif not player1.is_hitting_tile(CollisionDirection.BOTTOM) and not player1.is_hitting_tile(CollisionDirection.TOP):
-        airjump = 1
-    player1.say(str(airjump))
-    """
-game.on_update(on_update)

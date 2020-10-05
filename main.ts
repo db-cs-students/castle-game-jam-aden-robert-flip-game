@@ -451,6 +451,108 @@ scene.setTile(6, img`
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
 `)
+// Enemies
+scene.placeOnRandomTile(gary, 6)
+// Left, right, up, and down
+game.onUpdate(function on_update() {
+    if (controller.dx() > 0 && gravity < 0) {
+        player1.setImage(img`
+            . . . . . . f b 1 f 1 1 f . . .
+            . . . . . . f b 1 f f 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b b b b b f . . .
+            . . . . . . f f f f f f f . . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b 1 1 f 1 f 1 f . .
+            . . . . . f b 1 1 f 1 f 1 f . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b b b b b b b f . .
+            . . . . . . f f f f f f f . . .
+        `)
+    } else if (controller.dx() < 0 && gravity < 0) {
+        player1.setImage(img`
+            . . . . . . f 1 b f 1 b f . . .
+            . . . . . . f 1 f f 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f b b b b b f . . .
+            . . . . . . f f f f f f f . . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f 1 f 1 f 1 1 b f . .
+            . . . . . f 1 f 1 f 1 1 b f . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f b b b b b b b f . .
+            . . . . . . f f f f f f f . . .
+        `)
+    } else if (controller.dx() > 0) {
+        player1.setImage(img`
+            . . . . . . f f f f f f f . . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b 1 1 f 1 f 1 f . .
+            . . . . . f b 1 1 f 1 f 1 f . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b b b b b b b f . .
+            . . . . . . f f f f f f f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 f f 1 f . . .
+            . . . . . . f b b f b 1 f . . .
+        `)
+    } else if (controller.dx() < 0) {
+        player1.setImage(img`
+            . . . . . . f f f f f f f . . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f 1 f 1 f 1 1 b f . .
+            . . . . . f 1 f 1 f 1 1 b f . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f b b b b b b b f . .
+            . . . . . . f f f f f f f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 f f 1 b f . . .
+            . . . . . . f 1 b f b b f . . .
+        `)
+    }
+    
+    // Jump
+    if (controller.A.isPressed() && player1.isHittingTile(CollisionDirection.Bottom)) {
+        player1.vy = -100
+    }
+    
+    if (controller.A.isPressed() && player1.isHittingTile(CollisionDirection.Top)) {
+        player1.vy = 100
+    }
+    
+    /** 
+    if player1.is_hitting_tile(CollisionDirection.TOP) or player1.is_hitting_tile(CollisionDirection.BOTTOM):
+        airjump = 0
+    elif controller.B.is_pressed() and airjump == 1:
+        airjump = 2
+    elif not player1.is_hitting_tile(CollisionDirection.BOTTOM) and not player1.is_hitting_tile(CollisionDirection.TOP):
+        airjump = 1
+    player1.say(str(airjump))
+    
+ */
+})
 // Forever Commands
 // Death
 function on_hit_tile(sprite: Sprite) {
@@ -633,106 +735,4 @@ forever(function on_forever() {
         gary.destroy()
     }
     
-})
-// Enemies
-scene.placeOnRandomTile(gary, 6)
-// Left, right, up, and down
-game.onUpdate(function on_update() {
-    if (controller.dx() > 0 && gravity < 0) {
-        player1.setImage(img`
-            . . . . . . f b 1 f 1 1 f . . .
-            . . . . . . f b 1 f f 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b b b b b f . . .
-            . . . . . . f f f f f f f . . .
-            . . . . . f b 1 1 1 1 1 1 f . .
-            . . . . . f b 1 1 1 1 1 1 f . .
-            . . . . . f b 1 1 f 1 f 1 f . .
-            . . . . . f b 1 1 f 1 f 1 f . .
-            . . . . . f b 1 1 1 1 1 1 f . .
-            . . . . . f b b b b b b b f . .
-            . . . . . . f f f f f f f . . .
-        `)
-    } else if (controller.dx() < 0 && gravity < 0) {
-        player1.setImage(img`
-            . . . . . . f 1 b f 1 b f . . .
-            . . . . . . f 1 f f 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f b b b b b f . . .
-            . . . . . . f f f f f f f . . .
-            . . . . . f 1 1 1 1 1 1 b f . .
-            . . . . . f 1 1 1 1 1 1 b f . .
-            . . . . . f 1 f 1 f 1 1 b f . .
-            . . . . . f 1 f 1 f 1 1 b f . .
-            . . . . . f 1 1 1 1 1 1 b f . .
-            . . . . . f b b b b b b b f . .
-            . . . . . . f f f f f f f . . .
-        `)
-    } else if (controller.dx() > 0) {
-        player1.setImage(img`
-            . . . . . . f f f f f f f . . .
-            . . . . . f b 1 1 1 1 1 1 f . .
-            . . . . . f b 1 1 1 1 1 1 f . .
-            . . . . . f b 1 1 f 1 f 1 f . .
-            . . . . . f b 1 1 f 1 f 1 f . .
-            . . . . . f b 1 1 1 1 1 1 f . .
-            . . . . . f b b b b b b b f . .
-            . . . . . . f f f f f f f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 f f 1 f . . .
-            . . . . . . f b b f b 1 f . . .
-        `)
-    } else if (controller.dx() < 0) {
-        player1.setImage(img`
-            . . . . . . f f f f f f f . . .
-            . . . . . f 1 1 1 1 1 1 b f . .
-            . . . . . f 1 1 1 1 1 1 b f . .
-            . . . . . f 1 f 1 f 1 1 b f . .
-            . . . . . f 1 f 1 f 1 1 b f . .
-            . . . . . f 1 1 1 1 1 1 b f . .
-            . . . . . f b b b b b b b f . .
-            . . . . . . f f f f f f f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 f f 1 b f . . .
-            . . . . . . f 1 b f b b f . . .
-        `)
-    }
-    
-    // Jump
-    if (controller.A.isPressed() && player1.isHittingTile(CollisionDirection.Bottom)) {
-        player1.vy = -100
-    }
-    
-    if (controller.A.isPressed() && player1.isHittingTile(CollisionDirection.Top)) {
-        player1.vy = 100
-    }
-    
-    /** 
-    if player1.is_hitting_tile(CollisionDirection.TOP) or player1.is_hitting_tile(CollisionDirection.BOTTOM):
-        airjump = 0
-    elif controller.B.is_pressed() and airjump == 1:
-        airjump = 2
-    elif not player1.is_hitting_tile(CollisionDirection.BOTTOM) and not player1.is_hitting_tile(CollisionDirection.TOP):
-        airjump = 1
-    player1.say(str(airjump))
-    
- */
 })
