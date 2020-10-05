@@ -130,7 +130,31 @@ scene.setBackgroundImage(img`
 game.splash("Press z")
 game.splash(" z = Jump x = Flip ")
 info.setLife(3)
+level_change()
 let level = 0
+scene.setTileMap(img`
+            22222222222222222222222222222222222222222222222222
+            ....................2.................2.........5.
+            ................................................5.
+            ..........................1111111...............5.
+            ....................1111112222222111111.........5.
+            ....................2222222222222222222.......1111
+            ...........11111....2222222222222222222.......2222
+            ...........22222....2222222222222222222...........
+            ....................2222222222222222222...........
+            ...11111............2222222222222222222...........
+            ...22222............2222222233322222222...........
+            ...........................2...2..................
+            ..................................................
+            .......6...................................1......
+            1111111111111...1111111............111111112......
+            22222222222224442222222444444444444222222222444444
+            22222222222222222222222222222222222222222222222222
+            22222222222222222222222222222222222222222222222222
+            22222222222222222222222222222222222222222222222222
+            22222222222222222222222222222222222222222222222222
+            22222222222222222222222222222222222222222222222222
+        `)
 // Sprite Setup
 let gary = sprites.create(img`
     2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
@@ -294,52 +318,32 @@ let player1 = sprites.create(img`
     . . . . . . f b b f b 1 f . . .
 `, SpriteKind.Player)
 // Tilemaps and Levels
-if (level == 0) {
-    scene.setTileMap(img`
-        22222222222222222222222222222222222222222222222222
-        ....................2.................2.........5.
-        ................................................5.
-        ..........................1111111...............5.
-        ....................1111112222222111111.........5.
-        ....................2222222222222222222.......1111
-        ...........11111....2222222222222222222.......2222
-        ...........22222....2222222222222222222...........
-        ....................2222222222222222222...........
-        ...11111............2222222222222222222...........
-        ...22222............2222222233322222222...........
-        ...........................2...2..................
-        ..................................................
-        .......6...................................1......
-        1111111111111...1111111............111111112......
-        22222222222224442222222444444444444222222222444444
-        22222222222222222222222222222222222222222222222222
-        22222222222222222222222222222222222222222222222222
-        22222222222222222222222222222222222222222222222222
-        22222222222222222222222222222222222222222222222222
-        22222222222222222222222222222222222222222222222222
-    `)
-} else if (level == 1) {
-    scene.setTileMap(img`
-        6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
-        6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
-        6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
-        6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
-        6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
-        6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
-        6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
-        1 1 1 1 6 6 6 6 6 6 6 6 6 6 6 6
-        7 7 7 1 6 6 6 6 6 6 6 6 6 6 6 6
-        7 7 7 1 6 6 6 6 6 6 6 6 6 6 6 6
-        1 1 1 1 6 6 6 6 6 6 6 6 6 6 6 6
-        6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
-        6 6 6 6 6 1 1 1 1 6 6 6 6 6 6 6
-        1 1 1 1 1 1 2 2 2 1 1 1 1 1 1 1
-        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-    `)
-} else if (level == 2) {
-    
-} else {
+function level_change() {
+    if (level == 1) {
+        player1.setPosition(8, 7)
+        scene.setTileMap(img`
+                . . . . . . . . . . . . . . . .
+                . . . . . . . . . . . . . . . .
+                . . . . . . . . . . . . . . . .
+                . . . . . . . . . . . . . . . .
+                . . . . . . . . . . . . . . . .
+                . . . . . . . . . . . . . . . .
+                . . . . . . . . . . . . . . . .
+                1 1 1 1 . . . . . . . . . . . .
+                7 7 7 1 . . . . . . . . . . . .
+                7 7 7 1 . . . . . . . . . . . .
+                1 1 1 1 . . . . . . . . . . . .
+                . . . . . . . . . . . . . . . .
+                . . . . . 1 1 1 1 . . . . . . .
+                1 1 1 1 1 1 2 2 2 1 1 1 1 1 1 1
+                2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+                2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+            `)
+    } else if (level == 2) {
+        
+    } else if (level == 3) {
+        
+    }
     
 }
 
@@ -451,108 +455,6 @@ scene.setTile(6, img`
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
 `)
-// Enemies
-scene.placeOnRandomTile(gary, 6)
-// Left, right, up, and down
-game.onUpdate(function on_update() {
-    if (controller.dx() > 0 && gravity < 0) {
-        player1.setImage(img`
-            . . . . . . f b 1 f 1 1 f . . .
-            . . . . . . f b 1 f f 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b b b b b f . . .
-            . . . . . . f f f f f f f . . .
-            . . . . . f b 1 1 1 1 1 1 f . .
-            . . . . . f b 1 1 1 1 1 1 f . .
-            . . . . . f b 1 1 f 1 f 1 f . .
-            . . . . . f b 1 1 f 1 f 1 f . .
-            . . . . . f b 1 1 1 1 1 1 f . .
-            . . . . . f b b b b b b b f . .
-            . . . . . . f f f f f f f . . .
-        `)
-    } else if (controller.dx() < 0 && gravity < 0) {
-        player1.setImage(img`
-            . . . . . . f 1 b f 1 b f . . .
-            . . . . . . f 1 f f 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f b b b b b f . . .
-            . . . . . . f f f f f f f . . .
-            . . . . . f 1 1 1 1 1 1 b f . .
-            . . . . . f 1 1 1 1 1 1 b f . .
-            . . . . . f 1 f 1 f 1 1 b f . .
-            . . . . . f 1 f 1 f 1 1 b f . .
-            . . . . . f 1 1 1 1 1 1 b f . .
-            . . . . . f b b b b b b b f . .
-            . . . . . . f f f f f f f . . .
-        `)
-    } else if (controller.dx() > 0) {
-        player1.setImage(img`
-            . . . . . . f f f f f f f . . .
-            . . . . . f b 1 1 1 1 1 1 f . .
-            . . . . . f b 1 1 1 1 1 1 f . .
-            . . . . . f b 1 1 f 1 f 1 f . .
-            . . . . . f b 1 1 f 1 f 1 f . .
-            . . . . . f b 1 1 1 1 1 1 f . .
-            . . . . . f b b b b b b b f . .
-            . . . . . . f f f f f f f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 1 1 1 f . . .
-            . . . . . . f b 1 f f 1 f . . .
-            . . . . . . f b b f b 1 f . . .
-        `)
-    } else if (controller.dx() < 0) {
-        player1.setImage(img`
-            . . . . . . f f f f f f f . . .
-            . . . . . f 1 1 1 1 1 1 b f . .
-            . . . . . f 1 1 1 1 1 1 b f . .
-            . . . . . f 1 f 1 f 1 1 b f . .
-            . . . . . f 1 f 1 f 1 1 b f . .
-            . . . . . f 1 1 1 1 1 1 b f . .
-            . . . . . f b b b b b b b f . .
-            . . . . . . f f f f f f f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 1 1 1 b f . . .
-            . . . . . . f 1 f f 1 b f . . .
-            . . . . . . f 1 b f b b f . . .
-        `)
-    }
-    
-    // Jump
-    if (controller.A.isPressed() && player1.isHittingTile(CollisionDirection.Bottom)) {
-        player1.vy = -100
-    }
-    
-    if (controller.A.isPressed() && player1.isHittingTile(CollisionDirection.Top)) {
-        player1.vy = 100
-    }
-    
-    /** 
-    if player1.is_hitting_tile(CollisionDirection.TOP) or player1.is_hitting_tile(CollisionDirection.BOTTOM):
-        airjump = 0
-    elif controller.B.is_pressed() and airjump == 1:
-        airjump = 2
-    elif not player1.is_hitting_tile(CollisionDirection.BOTTOM) and not player1.is_hitting_tile(CollisionDirection.TOP):
-        airjump = 1
-    player1.say(str(airjump))
-    
- */
-})
 // Forever Commands
 // Death
 function on_hit_tile(sprite: Sprite) {
@@ -572,9 +474,10 @@ function on_hit_tile2(sprite: any) {
 
 scene.onHitTile(SpriteKind.Player, 4, on_hit_tile)
 // Winning
-scene.onHitTile(SpriteKind.Player, 5, function on_hit_tile3(sprite: Sprite) {
-    let level = 1
-    game.over(true)
+scene.onHitTile(SpriteKind.Player, 5, function next_level(sprite: Sprite) {
+    
+    level = 1
+    level_change()
 })
 forever(function on_forever() {
     if (gary.vx < 0 && gravity > 0) {
@@ -733,6 +636,108 @@ forever(function on_forever() {
         scene.cameraShake(4)
         gary.setPosition(0, 0)
         gary.destroy()
+    }
+    
+})
+// Enemies
+scene.placeOnRandomTile(gary, 6)
+// Left, right, up, and down
+/** 
+    if player1.is_hitting_tile(CollisionDirection.TOP) or player1.is_hitting_tile(CollisionDirection.BOTTOM):
+        airjump = 0
+    elif controller.B.is_pressed() and airjump == 1:
+        airjump = 2
+    elif not player1.is_hitting_tile(CollisionDirection.BOTTOM) and not player1.is_hitting_tile(CollisionDirection.TOP):
+        airjump = 1
+    player1.say(str(airjump))
+
+ */
+game.onUpdate(function on_update() {
+    if (controller.dx() > 0 && gravity < 0) {
+        player1.setImage(img`
+            . . . . . . f b 1 f 1 1 f . . .
+            . . . . . . f b 1 f f 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b b b b b f . . .
+            . . . . . . f f f f f f f . . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b 1 1 f 1 f 1 f . .
+            . . . . . f b 1 1 f 1 f 1 f . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b b b b b b b f . .
+            . . . . . . f f f f f f f . . .
+        `)
+    } else if (controller.dx() < 0 && gravity < 0) {
+        player1.setImage(img`
+            . . . . . . f 1 b f 1 b f . . .
+            . . . . . . f 1 f f 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f b b b b b f . . .
+            . . . . . . f f f f f f f . . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f 1 f 1 f 1 1 b f . .
+            . . . . . f 1 f 1 f 1 1 b f . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f b b b b b b b f . .
+            . . . . . . f f f f f f f . . .
+        `)
+    } else if (controller.dx() > 0) {
+        player1.setImage(img`
+            . . . . . . f f f f f f f . . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b 1 1 f 1 f 1 f . .
+            . . . . . f b 1 1 f 1 f 1 f . .
+            . . . . . f b 1 1 1 1 1 1 f . .
+            . . . . . f b b b b b b b f . .
+            . . . . . . f f f f f f f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 1 1 1 f . . .
+            . . . . . . f b 1 f f 1 f . . .
+            . . . . . . f b b f b 1 f . . .
+        `)
+    } else if (controller.dx() < 0) {
+        player1.setImage(img`
+            . . . . . . f f f f f f f . . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f 1 f 1 f 1 1 b f . .
+            . . . . . f 1 f 1 f 1 1 b f . .
+            . . . . . f 1 1 1 1 1 1 b f . .
+            . . . . . f b b b b b b b f . .
+            . . . . . . f f f f f f f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 1 1 1 b f . . .
+            . . . . . . f 1 f f 1 b f . . .
+            . . . . . . f 1 b f b b f . . .
+        `)
+    }
+    
+    // Jump
+    if (controller.A.isPressed() && player1.isHittingTile(CollisionDirection.Bottom)) {
+        player1.vy = -100
+    }
+    
+    if (controller.A.isPressed() && player1.isHittingTile(CollisionDirection.Top)) {
+        player1.vy = 100
     }
     
 })
