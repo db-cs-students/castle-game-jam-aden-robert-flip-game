@@ -703,7 +703,7 @@ def on_update():
         player1.vy = -100
     if controller.A.is_pressed() and player1.is_hitting_tile(CollisionDirection.TOP):
         player1.vy = 100
-"""
+    """
     if player1.is_hitting_tile(CollisionDirection.TOP) or player1.is_hitting_tile(CollisionDirection.BOTTOM):
         airjump = 0
     elif controller.B.is_pressed() and airjump == 1:
@@ -711,5 +711,5 @@ def on_update():
     elif not player1.is_hitting_tile(CollisionDirection.BOTTOM) and not player1.is_hitting_tile(CollisionDirection.TOP):
         airjump = 1
     player1.say(str(airjump))
-"""
+    """
 game.on_update(on_update)

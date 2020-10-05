@@ -637,16 +637,6 @@ forever(function on_forever() {
 // Enemies
 scene.placeOnRandomTile(gary, 6)
 // Left, right, up, and down
-/** 
-    if player1.is_hitting_tile(CollisionDirection.TOP) or player1.is_hitting_tile(CollisionDirection.BOTTOM):
-        airjump = 0
-    elif controller.B.is_pressed() and airjump == 1:
-        airjump = 2
-    elif not player1.is_hitting_tile(CollisionDirection.BOTTOM) and not player1.is_hitting_tile(CollisionDirection.TOP):
-        airjump = 1
-    player1.say(str(airjump))
-
- */
 game.onUpdate(function on_update() {
     if (controller.dx() > 0 && gravity < 0) {
         player1.setImage(img`
@@ -735,4 +725,14 @@ game.onUpdate(function on_update() {
         player1.vy = 100
     }
     
+    /** 
+    if player1.is_hitting_tile(CollisionDirection.TOP) or player1.is_hitting_tile(CollisionDirection.BOTTOM):
+        airjump = 0
+    elif controller.B.is_pressed() and airjump == 1:
+        airjump = 2
+    elif not player1.is_hitting_tile(CollisionDirection.BOTTOM) and not player1.is_hitting_tile(CollisionDirection.TOP):
+        airjump = 1
+    player1.say(str(airjump))
+    
+ */
 })
