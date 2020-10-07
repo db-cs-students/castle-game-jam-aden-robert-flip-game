@@ -133,28 +133,28 @@ info.setLife(3)
 level_change()
 let level = 0
 scene.setTileMap(img`
-            22222222222222222222222222222222222222222222222222
-            ....................2.................2.........5.
-            ................................................5.
-            ..........................1111111...............5.
-            ....................1111112222222111111.........5.
-            ....................2222222222222222222.......1111
-            ...........11111....2222222222222222222.......2222
-            ...........22222....2222222222222222222...........
-            ....................2222222222222222222...........
-            ...11111............2222222222222222222...........
-            ...22222............2222222233322222222...........
-            ...........................2...2..................
-            ..................................................
-            .......6...................................1......
-            1111111111111...1111111............111111112......
-            22222222222224442222222444444444444222222222444444
-            22222222222222222222222222222222222222222222222222
-            22222222222222222222222222222222222222222222222222
-            22222222222222222222222222222222222222222222222222
-            22222222222222222222222222222222222222222222222222
-            22222222222222222222222222222222222222222222222222
-        `)
+    22222222222222222222222222222222222222222222222222
+    ....................2222222222222222222.........5.
+    ....................2222222222222222222.........5.
+    ....................2222222222222222222.........5.
+    ....................2222222222222222222.........5.
+    ....................2222222222222222222.......1111
+    ...........11111....2222222222222222222.......2222
+    ...........22222....2222222222222222222...........
+    ....................2222222222222222222...........
+    ...11111............2222222222222222222...........
+    ...22222............2222222233322222222...........
+    ...........................2...2..................
+    ..................................................
+    .......6...................................1......
+    1111111111111...1111111............111111112......
+    22222222222224442222222444444444444222222222444444
+    22222222222222222222222222222222222222222222222222
+    22222222222222222222222222222222222222222222222222
+    22222222222222222222222222222222222222222222222222
+    22222222222222222222222222222222222222222222222222
+    22222222222222222222222222222222222222222222222222
+`)
 // Sprite Setup
 let gary = sprites.create(img`
     2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
@@ -296,7 +296,7 @@ scene.setBackgroundImage(img`
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
 `)
-info.startCountdown(500)
+info.startCountdown(300)
 let bpress = 0
 let gravity = 0
 let player1 = sprites.create(img`
@@ -339,12 +339,12 @@ function level_change() {
             .............................................bb...bb...bb...bb...bbbfffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
             ............................................bbbb.bbbb.bbbb.bbbb.bbbbfffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbb
             ...........................................bbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbb
-            ...........................................bbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbb
-            ...........................................bbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbb
-            ..........................................9ffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbb
-            ............1111.........................9.ffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbb
-            ...........12222........................9..ffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbb
-            11111111111222221......................9...ffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbb
+            ..............................5............bbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbb
+            ..............................5............bbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbb
+            ..............................5...........9ffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbb
+            ............1111..............5..........9.ffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbb
+            ...........12222..............5.........9..ffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbb
+            11111111111222221.............5........9...ffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbb
             2222222222222222211111111111112121227777777aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaffffffffffaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbb
             222222222222222222222222222222222222.......bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbb
             2222222222222222222222222222222222228888888bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbb
@@ -445,7 +445,7 @@ function level_change() {
             .....................................................................................................bbbbbbbbbbbbbbbbbfffffffffffffffffffbffbbfffffffffbbbfbfbfbbfbfffffffffbfffffffffffbfbbbbfbfbbbbbbbbfbbbfffbbbbbbbbbbfbfffffffffffffffffffbbbbbbbbbbbbbbbbb
             .....................................................................................................bbbbbbbbbbbbbbbbbfffffffffffffffffffbffffbffffffffbfbfbfbfffffffffbbbfbfffffffffffffbfffbfbbfffffffbfbfbfbbbbbffffffbfbfffffffffffffffffffbbbbbbbbbbbbbbbbb
             .....................................................................................................bbbbbbbbbbbbbbbbbfffffffffffffffffffbfbbffbbbbbbbfbfbfbfbbbbbfbfbfbffbfffffffffffffffbffbffbbfbfbbbbfbfbfbfffbbbbfffbfbfffffffffffffffffffbbbbbbbbbbbbbbbbb
-            .....................................................................................................bbbbbbbbbbbbbbbbbfffffffffffffffffffbfffbfffffffbfbfbfbfffffbbbfbfbffbfffffffffffffffbffbbbfbfbfbffbbbfbfbbfbbffbbbbbfbfffffffffffffffffffbbbbbbbbbbbbbbbbb
+            .....................................................................................................bbbbbbbbbbbbbbbbbfffffffffffffffffffbfffbfffffffbfbfbfbfffffbbbfbfbffbfffffffffffffffbffbbffbfbfbffbbbfbfbbfbbffbbbbbfbfffffffffffffffffffbbbbbbbbbbbbbbbbb
             .....................................................................................................bbbbbbbbbbbbbbbbbfffffffffffffffffffbbbfbbbbbbbbbbbfbfbbbbffffffbfbfbfffffffffffffffffbfffbfbfbfbbbbfffbffbffbbbbffbffbfffffffffffffffffffbbbbbbbbbbbbbbbbb
             .....................................................................................................bbbbbbbbbbbbbbbbbfffffffffffffffffffbfbfffffffffffffbffffbfbbbbfbfbbfffffffffffffffffffbbbbfbfbfffffbbbbfbbfbbfbbffbffbfffffffffffffffffffbbbbbbbbbbbbbbbbb
             .....................................................................................................bbbbbbbbbbbbbbbbbfffffffffffffffffffbfbbfbbbbbbbbbffbffffbfbffbbbfffffffffffffffffffffffffffbfbfbbbbbffffbffbbffbbbbbbbfffffffffffffffffffbbbbbbbbbbbbbbbbb
@@ -582,26 +582,56 @@ function level_change() {
         `)
         info.startCountdown(300)
     } else if (level == 2) {
-        scene.setTileMap(img`
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . 3 3 3 3 3 . . . . . .
-            . . . 3 3 3 3 . 3 3 3 . . . . .
-            . . 3 . . . 3 3 3 3 . 3 3 . . .
-            . . 3 . . . 3 3 3 3 3 3 3 3 . .
-            . . 3 . . . 3 3 3 3 . . . . . .
-            . . . 3 . 3 . 3 3 3 3 . . . . .
-            . . . 3 3 . 3 3 3 3 . 3 . . . .
-            . . . . 3 3 . 3 3 . 3 3 . . . .
-            . . . . 3 3 . 3 3 3 3 . . . . .
-            . . . . 3 3 3 3 . . . . . . . .
-            . . . . 3 3 . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-        `)
-    } else if (level == 3) {
+        game.splash("Victory...")
+        game.splash("was it worth it,")
+        game.splash("was it really,")
+        game.splash("You can leave now,")
+        game.splash("There's nothing else,")
+        game.splash("There really isn't,")
+        game.splash("goodbye.")
+        game.splash(".")
+        game.splash(". .")
+        game.splash(". . .")
+        game.splash(". . . .")
+        game.splash("oh,")
+        game.splash("you're still here,")
+        game.splash("you must think")
+        game.splash("that there's some")
+        game.splash("secret ending for")
+        game.splash("reading this but,")
+        game.splash("You're just", "wasting your time")
+        game.splash("why does this seem so familiar")
         
+        level = 0
+        level_change()
+    }
+    
+    if (level == 0) {
+        scene.setTileMap(img`
+            22222222222222222222222222222222222222222222222222
+            ....................2222222222222222222.........5.
+            ....................2222222222222222222.........5.
+            ....................2222222222222222222.........5.
+            ....................2222222222222222222.........5.
+            ....................2222222222222222222.......1111
+            ...........11111....2222222222222222222.......2222
+            ...........22222....2222222222222222222...........
+            ....................2222222222222222222...........
+            ...11111............2222222222222222222...........
+            ...22222............2222222233322222222...........
+            ...........................2...2..................
+            ..................................................
+            .......6...................................1......
+            1111111111111...1111111............111111112......
+            22222222222224442222222444444444444222222222444444
+            22222222222222222222222222222222222222222222222222
+            22222222222222222222222222222222222222222222222222
+            22222222222222222222222222222222222222222222222222
+            22222222222222222222222222222222222222222222222222
+            22222222222222222222222222222222222222222222222222
+        `)
+        info.setLife(3)
+        info.startCountdown(300)
     }
     
 }
@@ -713,7 +743,7 @@ scene.setTile(6, img`
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
-`, true)
+`)
 scene.setTile(7, img`
     e e e e e e e e e e e e e e e e
     e e e e e e e e e e e e e e e e
@@ -1092,30 +1122,23 @@ forever(function on_forever() {
     
 })
 // Death
-function on_hit_tile(sprite: Sprite) {
+function on_death(sprite: Sprite) {
     player1.setPosition(80, 104)
     info.changeLifeBy(-1)
     scene.cameraShake(4)
     player1.say("ouch", 1000, 15, 0)
 }
 
-scene.onHitTile(SpriteKind.Player, 3, on_hit_tile)
-function on_hit_tile2(sprite: any) {
-    player1.setPosition(80, 104)
-    info.changeLifeBy(-1)
-    scene.cameraShake(4)
-    player1.say("ouch", 1000, 15, 0)
-}
-
-scene.onHitTile(SpriteKind.Player, 4, on_hit_tile)
+scene.onHitTile(SpriteKind.Player, 3, on_death)
+scene.onHitTile(SpriteKind.Player, 4, on_death)
 // Winning
-scene.onHitTile(SpriteKind.Player, 5, function next_level(sprite: Sprite) {
+scene.onHitTile(SpriteKind.Player, 5, function on_win(sprite: Sprite) {
     
-    level + 1
+    level = level + 1
     level_change()
 })
 // Gravity Reflector
-function on_hit_tile3(sprite: any) {
+scene.onHitTile(SpriteKind.Player, 12, function on_switch(sprite: Sprite) {
     let bpress: number;
     if (bpress == 0) {
         bpress = 1
@@ -1123,6 +1146,4 @@ function on_hit_tile3(sprite: any) {
         bpress = 0
     }
     
-}
-
-scene.onHitTile(SpriteKind.Player, 12, on_hit_tile)
+})
